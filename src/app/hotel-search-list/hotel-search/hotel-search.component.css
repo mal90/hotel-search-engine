@@ -1,3 +1,11 @@
 img{width:100%}
 
 .card:hover {border:1px solid #dd0000;}
+
+.star {
+    font-size: .85rem;
+    color: #b0c4de;
+  }
+  .filled {
+    color: #e7711b;
+  }

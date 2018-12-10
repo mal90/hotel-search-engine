@@ -2,26 +2,43 @@
   <div class="row">
     <div class="col-md-2"></div>
     <div class="col-md-8">
-      <div class="card bg-light mt-5"  *ngFor="let list of hotelList">
+      <div class="card bg-light mt-5" *ngFor="let hotel of hotelList">
         <div class="row">
           <div class="col-md-3">
-            <img src={{list.photo}}>
+            <img src={{hotel.photo}}>
           </div>
           <div class="col-md-6 pt-1">
-            <h6>{{list.name}}</h6>
-            <small class="text-muted">{{list.address}}</small><br/>
-            <small [innerHTML]="list.description | shortDescription"></small><small>show more </small>
+            <h6>{{hotel.name}}</h6>
+            <small class="text-muted">{{hotel.address}}</small><br />
+            <small [innerHTML]="hotel.description | shortDescription"></small><small>show more </small>
           </div>
           <div class="col-md-3 border-left card-body">
             <ul class="list-unstyled">
-              <li>Completed Projects</li>
-              <li class="text-danger"><small>Possession on : May, 2018 </small></li>
+              <li>
+                <ngb-rating [(rate)]="hotel.rating" [(readonly)]="isRatingReadonly" [(max)]="maxRate">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+              </li>
+              <li class="text-danger"><small>{{hotel.stars}}- star hotel</small></li>
             </ul>
-            <button type="button" class="btn btn-outline-primary">Contact Us</button>
+            <button type="button" class="btn btn-outline-primary">Book Now!</button>
           </div>
         </div>
       </div>
     </div>
-    <div class="col-md-2"></div>
+    <div class="col-md-2">
+      <div class="row">
+        <div class="col mt-5">
+          <div ngbDropdown class="d-inline-block">
+            <button class="btn btn-outline-primary" id="dropdownBasic1" ngbDropdownToggle>Currency</button>
+            <div ngbDropdownMenu aria-labelledby="dropdownBasic1">
+              <button class="dropdown-item" *ngFor="let currency of currencyTypes">{{currency}}</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
