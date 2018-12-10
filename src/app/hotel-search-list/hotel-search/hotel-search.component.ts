@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelSearchService } from '../hote-search-list.service';
 
 @Component({
   selector: 'app-hotel-search',
@@ -7,9 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HotelSearchComponent implements OnInit {
 
-  constructor() { }
+  constructor(private hotelSearch : HotelSearchService) { }
 
   ngOnInit() {
+    this.hotelSearch.getHotel().subscribe(response => {
+      console.log(response);
+    });
   }
 
 }
