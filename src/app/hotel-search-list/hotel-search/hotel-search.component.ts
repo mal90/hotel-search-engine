@@ -7,12 +7,15 @@ import { HotelSearchService } from '../hote-search-list.service';
   styleUrls: ['./hotel-search.component.css']
 })
 export class HotelSearchComponent implements OnInit {
+  hotels: any[] = [];
+  selectedHotelId:any;
 
   constructor(private hotelSearch : HotelSearchService) { }
 
   ngOnInit() {
     this.hotelSearch.getHotel().subscribe(response => {
       console.log(response);
+      this.hotels = response;
     });
   }
 

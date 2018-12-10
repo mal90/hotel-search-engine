@@ -7,16 +7,12 @@
   <div class="row">
       <div class="col-2"></div>
 	    <div class="col-8">
-    	    <div id="custom-search-input">
-                <div class="input-group">
-                    <input type="text" class="search-query form-control" placeholder="Search Hotels" />
-                    <span class="input-group-btn">
-                        <button type="button" disabled>
-                            <span class="fa fa-search"></span>
-                        </button>
-                    </span>
-                </div>
-            </div>
+    	    <ng-select [items]="hotels"
+                    bindLabel="name"
+                    autofocus
+                    bindValue="id"
+                    [(ngModel)]="selectedHotelId">
+                    </ng-select>
         </div>
         <div class="col-2"></div>
 	</div>
