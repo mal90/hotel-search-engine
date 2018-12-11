@@ -19,18 +19,26 @@ export class HotelSearchComponent implements OnInit {
 
   ngOnInit() {
     let currentHotel = "tokyo";
-    this.hotelSearchService.getHotel(currentHotel).subscribe(response => {
-      console.log(response);
-      this.hotelList = response;
-      this.hotelList.map(hotel => hotel.price = 100);
+    this.hotelSearchService.getHotel(currentHotel).subscribe(hotelList => {
+      console.log(hotelList);
+      this.hotelList = hotelList;
+      this.changeCurrency(this.selectedCurrency);
     });
   }
 
   changeCurrency(newCurrency: string) { 
     this.selectedCurrency = newCurrency;
-    this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(response => {
-
+    this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
+      console.log(priceList);
+      this.hotelList.forEach(hotel => {
+        hotel.currency = newCurrency;
+        hotel.price = priceList.filter(price => price.id == hotel.id)[0].price;
+      });
     });
+  }
+
+  sortHotelResults(){
+    //TO DO
   }
 
 }

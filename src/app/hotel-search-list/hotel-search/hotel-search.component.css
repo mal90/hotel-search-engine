@@ -1,6 +1,14 @@
-img{width:100%}
+img {
+    width:100%
+}
 
-.card:hover {border:1px solid #dd0000;}
+.card:hover {
+    border:1px solid #dd0000;
+}
+
+.price {
+    color: green
+}
 
 .star {
     font-size: .85rem;
