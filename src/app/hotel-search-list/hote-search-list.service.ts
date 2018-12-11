@@ -8,8 +8,12 @@ export class HotelSearchService {
 
   constructor(private http:HttpClient) { }
 
-  public getHotel(): Observable<any> {
-    return this.http.get<any>(environment.HOTEL.GET);
+  public getHotel(city): Observable<any> {
+    return this.http.get<any>(environment.HOTEL.GET + city);
+  }
+
+  public getPriceByCurrency(currency): Observable<any> {
+    return this.http.get<any>(environment.CURRENCY.GET + currency);
   }
   
 }

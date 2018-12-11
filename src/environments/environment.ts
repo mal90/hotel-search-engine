@@ -6,7 +6,11 @@ export const environment = {
   production: false,
 
   HOTEL : {
-    GET : "https://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo"
+    GET : "https://5c08f37bea3172001389ccbd.mockapi.io/hotels/"
+  },
+
+  CURRENCY : {
+    GET : "http://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo/1/"
   }
 };
 
