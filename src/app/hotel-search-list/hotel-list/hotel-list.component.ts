@@ -1,12 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { HotelSearchService } from '../hote-search-list.service';
+import { HotelSearchService } from '../shared/hotel-search-list.service';
 
 @Component({
-  selector: 'app-hotel-search',
-  templateUrl: './hotel-search.component.html',
-  styleUrls: ['./hotel-search.component.css']
+  selector: 'app-hotel-list',
+  templateUrl: './hotel-list.component.html',
+  styleUrls: ['./hotel-list.component.css']
 })
-export class HotelSearchComponent implements OnInit {
+export class HotelListComponent implements OnInit {
 
   hotelList:any[] = [];
   maxRate:number = 10; // max rating of the hotel is set to default value of = 10
@@ -36,7 +36,10 @@ export class HotelSearchComponent implements OnInit {
       this.hotelList.forEach(hotel => {
         hotel.currency = newCurrency;
         let selectedPrice = priceList.filter(price => price.id == hotel.id)[0];
-        hotel.price = selectedPrice !== undefined ? selectedPrice.price : "rate is unavailable" ;
+        if(selectedPrice){
+          hotel.price = selectedPrice.price;
+          hotel.currency = newCurrency;
+        }
       });
     });
   }

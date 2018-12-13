@@ -1,15 +1,14 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { HotelSearchComponent } from './hotel-search/hotel-search.component';
 import { NgbRatingModule , NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { SearchListComponent } from './search-list/search-list.component';
-import { ShortDescription } from './short-description.pipe';
-import { HotelSearchService } from './hote-search-list.service';
+import { ShortDescription } from '../hotel-search-list/shared/short-description.pipe';
+import { HotelSearchService } from '../hotel-search-list/shared/hotel-search-list.service';
 import { FormsModule } from '@angular/forms';
+import { HotelListComponent } from './hotel-list/hotel-list.component';
 
 
 @NgModule({
-  declarations: [HotelSearchComponent, SearchListComponent, ShortDescription],
+  declarations: [ShortDescription, HotelListComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -17,8 +16,7 @@ import { FormsModule } from '@angular/forms';
     NgbDropdownModule
   ],
   exports : [
-    HotelSearchComponent,
-    SearchListComponent,
+    HotelListComponent,
     ShortDescription
   ],
   providers : [

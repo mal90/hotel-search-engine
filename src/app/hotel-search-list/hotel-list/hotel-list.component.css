@@ -10,6 +10,10 @@ img {
     color: green
 }
 
+.no-price{
+    color: red
+}
+
 .star {
     font-size: .85rem;
     color: #b0c4de;

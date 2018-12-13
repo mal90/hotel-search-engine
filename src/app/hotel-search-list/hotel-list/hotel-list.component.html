@@ -22,7 +22,10 @@
                 </ngb-rating>
               </li>
               <li class="text-danger"><small>{{hotel.stars}}- star hotel</small></li>
-              <li class="price"><h6>{{hotel.currency}} {{hotel.price}}</h6></li>
+              <li class="price"  *ngIf="hotel.price; else noPrice"><h6>{{hotel.currency}} {{hotel.price}}</h6></li>
+              <ng-template #noPrice>
+                <li class="no-price"><h6>no rate available</h6></li>
+              </ng-template>
             </ul>
             <button type="button" class="btn btn-outline-primary">Book Now!</button>
           </div>
