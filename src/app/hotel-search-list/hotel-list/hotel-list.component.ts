@@ -30,6 +30,7 @@ export class HotelListComponent implements OnInit {
   }
 
   changeCurrency(newCurrency: string) {
+    this.selectedCurrency = newCurrency;
     this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
       console.log(priceList);
       this.refreshResults(priceList, newCurrency);
@@ -41,9 +42,9 @@ export class HotelListComponent implements OnInit {
     let hotelWithoutPrice : Hotel[] = [];
     this.hotelList.forEach(hotel => {
       hotel.currency = newCurrency;
-      let selectedPrice = priceList.filter(price => price.id == hotel.id)[0];
-      if (selectedPrice) {
-        hotel.price = selectedPrice.price;
+      let matchedPriceObj = priceList.filter(price => price.id == hotel.id)[0];
+      if (matchedPriceObj) {
+        hotel.price = this.roundPrice(newCurrency , matchedPriceObj.price);
         hotel.currency = newCurrency;
         hotelWithPrice.push(hotel);
       }
@@ -54,8 +55,21 @@ export class HotelListComponent implements OnInit {
       }
     });
 
+    this.sortHotelResults(hotelWithPrice,hotelWithoutPrice);
+  }
+
+  sortHotelResults(hotelWithPrice,hotelWithoutPrice){
     this.hotelList = []
     this.hotelList.push(...hotelWithPrice, ...hotelWithoutPrice);
+  }
+
+  roundPrice(currency:string,price:number){
+    if(currency === 'USD' || currency === 'SGD' || currency === 'CNY'){
+      return Math.round(price);
+    }
+    else{
+      return Math.round(price/100) * 100 ;
+    }
   }
 
 }
