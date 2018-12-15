@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { HotelSearchService } from '../shared/hotel-list.service';
 import { Hotel, Price } from '../shared/hotel-list.model';
+import { NgxSpinnerService } from 'ngx-spinner';
+
 
 @Component({
   selector: 'app-hotel-list',
@@ -16,7 +18,8 @@ export class HotelListComponent implements OnInit {
   selectedCurrency: string;
 
 
-  constructor(private hotelSearchService: HotelSearchService) { }
+  constructor(private hotelSearchService: HotelSearchService,
+    private spinner: NgxSpinnerService) { }
 
   ngOnInit() {
     let savedCurrency = localStorage.getItem('currency');
@@ -30,10 +33,12 @@ export class HotelListComponent implements OnInit {
   }
 
   changeCurrency(newCurrency: string) {
+    this.spinner.show();
     this.selectedCurrency = newCurrency;
     this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
       console.log(priceList);
       this.refreshResults(priceList, newCurrency);
+      this.spinner.hide();
     });
   }
 
@@ -58,7 +63,7 @@ export class HotelListComponent implements OnInit {
     this.sortHotelResults(hotelWithPrice,hotelWithoutPrice);
   }
 
-  sortHotelResults(hotelWithPrice,hotelWithoutPrice){
+  sortHotelResults(hotelWithPrice:Hotel[],hotelWithoutPrice:Hotel[]){
     this.hotelList = []
     this.hotelList.push(...hotelWithPrice, ...hotelWithoutPrice);
   }

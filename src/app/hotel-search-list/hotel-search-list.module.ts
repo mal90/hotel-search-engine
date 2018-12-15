@@ -5,6 +5,8 @@ import { ShortDescription } from '../hotel-search-list/shared/short-description.
 import { HotelSearchService } from './shared/hotel-list.service';
 import { FormsModule } from '@angular/forms';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
+import { NgxSpinnerModule } from 'ngx-spinner';
+
 
 
 @NgModule({
@@ -13,7 +15,8 @@ import { HotelListComponent } from './hotel-list/hotel-list.component';
     CommonModule,
     FormsModule,
     NgbRatingModule,
-    NgbDropdownModule
+    NgbDropdownModule,
+    NgxSpinnerModule
   ],
   exports : [
     HotelListComponent,
