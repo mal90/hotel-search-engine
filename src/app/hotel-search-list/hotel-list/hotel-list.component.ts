@@ -37,19 +37,25 @@ export class HotelListComponent implements OnInit {
   }
 
   refreshResults(priceList:Price[], newCurrency:string) {
-    console.log(priceList);
+    let hotelWithPrice : Hotel[] = [];
+    let hotelWithoutPrice : Hotel[] = [];
     this.hotelList.forEach(hotel => {
       hotel.currency = newCurrency;
       let selectedPrice = priceList.filter(price => price.id == hotel.id)[0];
       if (selectedPrice) {
         hotel.price = selectedPrice.price;
         hotel.currency = newCurrency;
+        hotelWithPrice.push(hotel);
       }
       else {
         hotel.price = undefined;
         hotel.currency = undefined;
+        hotelWithoutPrice.push(hotel);
       }
     });
+
+    this.hotelList = []
+    this.hotelList.push(...hotelWithPrice, ...hotelWithoutPrice);
   }
 
 }
