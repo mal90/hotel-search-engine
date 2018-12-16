@@ -4,7 +4,7 @@ Simple demo app for retriving list of hotels and it's prices from set of mock AP
 
 technologies : Angular 7 , Bootstrap , NG bootstrap
 
-## Using Mock APIs to retrive sample set of data
+## FOllowing Mock APIs are used to retrive sample set of data
 
 * Static data:   
   * https://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo
@@ -19,11 +19,22 @@ technologies : Angular 7 , Bootstrap , NG bootstrap
 
 ## How to run
 
+Locally
+
 Make sure you have installed Angular 7 globally
 
 * clone repository
 * npm install
-* ng serve.
+* ng serve
+* access the application at http://localhost:4200
 
+Using Docker Compose
+
+Make sure you have installed docker in your machine
+
+* clone repository
+* place the docker-compose.yml file 1 folder up from the app folder (hotel-search-engine)
+* run command : docker-compose up
+* access the application at http://localhost:4200
 
 
