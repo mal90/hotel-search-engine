@@ -1,0 +1,16 @@
+
+FROM node:8.11
+
+WORKDIR /web
+
+RUN npm install -g @angular/cli
+
+COPY package.json package.json
+
+RUN npm install
+
+COPY *.json ./
+
+COPY src src
+
+COPY e2e e2e

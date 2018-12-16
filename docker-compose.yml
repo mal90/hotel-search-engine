@@ -1,0 +1,12 @@
+version: '3'
+services:
+  hotel-listing-app: 
+    build:
+      context: ./hotel-listing-app
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./hotel-listing-app/src:/web/src
+      - ./hotel-listing-app/e2e:/web/e2e
+    ports:
+      - 4200:4200
+    command: ["ng", "serve", "--host", "0.0.0.0"]
