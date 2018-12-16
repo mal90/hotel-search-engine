@@ -17,7 +17,7 @@ export class HotelListComponent implements OnInit {
   hotelList: Hotel[] = [];
   maxRate: number = 10; // max rating of the hotel is set to default value of = 10
   isRatingReadonly: boolean = true; // max rating is bydefault readonly
-  currencyTypes: string[] = ["USD", "SGD", "CNY", "KRW"];
+  currencyTypes: string[] = ["USD", "SGD", "CNY", "KRW"];//Currency type initialization
   selectedCurrency: string;
 
 
@@ -26,11 +26,19 @@ export class HotelListComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit() {
+    /**
+     * savedCurrency is last selected currency
+     * if savedCurrency cannot be found , use USD as default currency
+     */
     let savedCurrency = localStorage.getItem('currency');
     this.selectedCurrency = savedCurrency ? savedCurrency : this.currencyTypes[0];
     let currentHotel = "tokyo";
+
+    /**
+     * retrive hotel list form hotelSearchService by currentHotel
+     * and save in the hotelList global variable
+     */
     this.hotelSearchService.getHotel(currentHotel).subscribe(hotelList => {
-      //console.log(hotelList);
       this.hotelList = hotelList;
       this.changeCurrency(this.selectedCurrency);
       },
@@ -41,16 +49,27 @@ export class HotelListComponent implements OnInit {
   }
 
   changeCurrency(newCurrency: string) {
+    /**
+     * When user change currency type , get the price list of the currency
+     * Refresh results will be called everytime user change the currency type
+     */
     this.spinner.show();
     this.selectedCurrency = newCurrency;
     this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
-      //console.log(priceList);
       this.refreshResults(priceList, newCurrency);
       this.spinner.hide();
     });
   }
 
   refreshResults(priceList:Price[], newCurrency:string) {
+    /**
+     * Create 2 temporary arrays hotelWithPrice , hotelWithoutPrice.
+     * loop through hotelList and match the id in the hotel object
+     * and the price object.
+     * If price found with the matching ids , assign that price
+     * and currency type and push it to the hotelWithPrice array.
+     * If not assign to the hotelWithoutPrice array.
+     */
     let hotelWithPrice : Hotel[] = [];
     let hotelWithoutPrice : Hotel[] = [];
     this.hotelList.forEach(hotel => {
@@ -72,11 +91,19 @@ export class HotelListComponent implements OnInit {
   }
 
   sortHotelResults(hotelWithPrice:Hotel[],hotelWithoutPrice:Hotel[]){
+    /**
+     * Add withPrice , withoutPrice arrays to the main hotelList array
+     * after emptying it.
+     */
     this.hotelList = []
     this.hotelList.push(...hotelWithPrice, ...hotelWithoutPrice);
   }
 
   roundPrice(currency:string,price:number){
+    /**
+     * Round the price to nearest 10 if the currency is USD , SGD  or CNY
+     * If not round it to nearest 100 dollers
+     */
     if(currency === 'USD' || currency === 'SGD' || currency === 'CNY'){
       return Math.round(price);
     }
@@ -86,6 +113,9 @@ export class HotelListComponent implements OnInit {
   }
 
   showMoreDescription(decription){
+    /**
+     * Use hotel-description modal component to show more description
+     */
     const modalRef = this.modalService.open(HotelDescriptionModalComponent);
     modalRef.componentInstance.decription = decription;
   }

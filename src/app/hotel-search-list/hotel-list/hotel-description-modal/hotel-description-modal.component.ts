@@ -13,7 +13,7 @@ export class HotelDescriptionModalComponent implements OnInit {
   constructor(public activeModal: NgbActiveModal) {}
 
   ngOnInit() {
-    console.log(this.decription);
+    //console.log(this.decription);
   }
 
 }
