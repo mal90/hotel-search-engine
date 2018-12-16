@@ -21,3 +21,8 @@ img {
   .filled {
     color: #e7711b;
   }
+
+
+  .show-more{
+      font-size: smaller;
+  }

@@ -4,39 +4,43 @@
     <div class="col-md-8">
       <ngx-spinner bdColor="rgba(63, 191, 170, 0.1)" size="medium" color="#3F88BF" type="ball-scale-multiple">
       </ngx-spinner>
-        <div class="card bg-light mt-5" *ngFor="let hotel of hotelList">
-          <div class="row">
-            <div class="col-md-3">
-              <img src={{hotel.photo}}>
-            </div>
-            <div class="col-md-6 pt-1">
-              <h6>{{hotel.name}}</h6>
-              <small class="text-muted">{{hotel.address}}</small><br />
-              <small [innerHTML]="hotel.description | shortDescription"></small><small>show more </small>
-            </div>
-            <div class="col-md-3 border-left card-body">
-              <ul class="list-unstyled">
-                <li>
-                  <ngb-rating [(rate)]="hotel.rating" [(readonly)]="isRatingReadonly" [(max)]="maxRate">
-                    <ng-template let-fill="fill" let-index="index">
-                      <span class="star" [class.filled]="fill === 100">&#9733;</span>
-                    </ng-template>
-                  </ngb-rating>
+      <div class="card bg-light mt-5" *ngFor="let hotel of hotelList">
+        <div class="row">
+          <div class="col-md-3">
+            <img src={{hotel.photo}}>
+          </div>
+          <div class="col-md-6 pt-1">
+            <h6>{{hotel.name}}</h6>
+            <small class="text-muted">{{hotel.address}}</small><br />
+            <small [innerHTML]="hotel.description | shortDescription">
+            </small>
+            <span>
+              <a class="show-more" href="javascript:void(0)" (click)=showMoreDescription(hotel.description);>show more </a>
+            </span>
+          </div>
+          <div class="col-md-3 border-left card-body">
+            <ul class="list-unstyled">
+              <li>
+                <ngb-rating [(rate)]="hotel.rating" [(readonly)]="isRatingReadonly" [(max)]="maxRate">
+                  <ng-template let-fill="fill" let-index="index">
+                    <span class="star" [class.filled]="fill === 100">&#9733;</span>
+                  </ng-template>
+                </ngb-rating>
+              </li>
+              <li class="text-danger"><small>{{hotel.stars}}- star hotel</small></li>
+              <li class="price" *ngIf="hotel.price; else noPrice">
+                <h6>{{hotel.currency}} {{hotel.price}}</h6>
+              </li>
+              <ng-template #noPrice>
+                <li class="no-price">
+                  <h6>no rate available</h6>
                 </li>
-                <li class="text-danger"><small>{{hotel.stars}}- star hotel</small></li>
-                <li class="price" *ngIf="hotel.price; else noPrice">
-                  <h6>{{hotel.currency}} {{hotel.price}}</h6>
-                </li>
-                <ng-template #noPrice>
-                  <li class="no-price">
-                    <h6>no rate available</h6>
-                  </li>
-                </ng-template>
-              </ul>
-              <button type="button" class="btn btn-outline-primary">Book Now!</button>
-            </div>
+              </ng-template>
+            </ul>
+            <button type="button" class="btn btn-outline-primary">Book Now!</button>
           </div>
         </div>
+      </div>
     </div>
     <div class="col-md-2">
       <div class="row">

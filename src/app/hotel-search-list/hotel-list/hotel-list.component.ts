@@ -2,6 +2,9 @@ import { Component, OnInit } from '@angular/core';
 import { HotelSearchService } from '../shared/hotel-list.service';
 import { Hotel, Price } from '../shared/hotel-list.model';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import { HotelDescriptionModalComponent } from './hotel-description-modal/hotel-description-modal.component';
+
 
 
 @Component({
@@ -19,24 +22,29 @@ export class HotelListComponent implements OnInit {
 
 
   constructor(private hotelSearchService: HotelSearchService,
-    private spinner: NgxSpinnerService) { }
+    private spinner: NgxSpinnerService,
+    private modalService: NgbModal) { }
 
   ngOnInit() {
     let savedCurrency = localStorage.getItem('currency');
     this.selectedCurrency = savedCurrency ? savedCurrency : this.currencyTypes[0];
     let currentHotel = "tokyo";
     this.hotelSearchService.getHotel(currentHotel).subscribe(hotelList => {
-      console.log(hotelList);
+      //console.log(hotelList);
       this.hotelList = hotelList;
       this.changeCurrency(this.selectedCurrency);
-    });
+      },
+      error => {
+          //Error handling
+      }
+    );
   }
 
   changeCurrency(newCurrency: string) {
     this.spinner.show();
     this.selectedCurrency = newCurrency;
     this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
-      console.log(priceList);
+      //console.log(priceList);
       this.refreshResults(priceList, newCurrency);
       this.spinner.hide();
     });
@@ -75,6 +83,11 @@ export class HotelListComponent implements OnInit {
     else{
       return Math.round(price/100) * 100 ;
     }
+  }
+
+  showMoreDescription(decription){
+    const modalRef = this.modalService.open(HotelDescriptionModalComponent);
+    modalRef.componentInstance.decription = decription;
   }
 
 }
