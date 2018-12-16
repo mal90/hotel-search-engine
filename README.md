@@ -1,6 +1,6 @@
 # Hotel Search Engine
 
-Just a simple demonstration for retriving list of hotels and it's prices
+Simple demo app for retriving list of hotels and it's prices from set of mock APIs
 
 technologies : Angular 7 , Bootstrap , NG bootstrap
 
@@ -21,7 +21,7 @@ technologies : Angular 7 , Bootstrap , NG bootstrap
 
 Make sure you have installed Angular 7 globally
 
-* Clone repository
+* clone repository
 * npm install
 * ng serve.
 
