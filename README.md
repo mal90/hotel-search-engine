@@ -1,10 +1,10 @@
 # Hotel Search Engine
 
-Simple demo app for retriving list of hotels and it's prices from set of mock APIs
+Simple demo app for retriving list of hotels and it's prices from set of mock APIs.
 
 technologies : Angular 7 , Bootstrap , NG bootstrap
 
-## FOllowing Mock APIs are used to retrive sample set of data
+## Following Mock APIs are used to retrive sample set of data
 
 * Static data:   
   * https://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo
