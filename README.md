@@ -21,9 +21,9 @@ technologies : Angular 7 , Bootstrap , NG bootstrap
 
 Make sure you have installed Angular 7 globally
 
-Clone repository
-npm install
-ng serve.
+* Clone repository
+* npm install
+* ng serve.
 
 
 
