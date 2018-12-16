@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { NgbRatingModule , NgbDropdownModule , NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { ShortDescription } from '../hotel-search-list/shared/short-description.pipe';
+import { HotelShortDescription } from './shared/hotel-short-description.pipe';
 import { HotelSearchService } from './shared/hotel-list.service';
 import { FormsModule } from '@angular/forms';
 import { HotelListComponent } from './hotel-list/hotel-list.component';
@@ -11,7 +11,7 @@ import { HotelDescriptionModalComponent } from './hotel-list/hotel-description-m
 
 
 @NgModule({
-  declarations: [ShortDescription, HotelListComponent, HotelDescriptionModalComponent],
+  declarations: [HotelShortDescription, HotelListComponent, HotelDescriptionModalComponent],
   imports: [
     CommonModule,
     FormsModule,
@@ -22,7 +22,7 @@ import { HotelDescriptionModalComponent } from './hotel-list/hotel-description-m
   ],
   exports : [
     HotelListComponent,
-    ShortDescription
+    HotelShortDescription
   ],
   providers : [
     HotelSearchService
