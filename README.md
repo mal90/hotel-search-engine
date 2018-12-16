@@ -1,27 +1,28 @@
-# HotelSearchEngine
+# Hotel Search Engine
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.5.
+Just a simple demonstration for retriving list of hotels and it's prices
 
-## Development server
+technologies : Angular 7 , Bootstrap , NG bootstrap
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+## Using Mock APIs to retrive sample set of data
 
-## Code scaffolding
+Static data: https://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+Prices:
+USD: http://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo/1/USD
+SGD: http://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo/1/SGD
+CNY: http://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo/1/CNY
+KRW: http://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo/1/KRW
 
-## Build
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## Running unit tests
+## How to run
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Make sure you have installed Angular 7 globally
 
-## Running end-to-end tests
+Clone repository
+npm install
+ng serve.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## Further help
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
