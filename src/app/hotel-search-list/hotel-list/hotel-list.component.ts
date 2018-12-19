@@ -43,7 +43,7 @@ export class HotelListComponent implements OnInit {
       this.changeCurrency(this.selectedCurrency);
       },
       error => {
-          //Error handling
+          console.log("Error occurred while retrieving results of hotels")
       }
     );
   }
@@ -58,6 +58,9 @@ export class HotelListComponent implements OnInit {
     this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
       this.refreshResults(priceList, newCurrency);
       this.spinner.hide();
+    },
+    error => {
+        console.log("Error occurred while retrieving results of prices")
     });
   }
 
