@@ -33,5 +33,17 @@ export class HotelSearchService {
       });
     });
   }
+
+  public getHotelsByLocale(locale): Observable<Hotel[]>{
+    return new Observable(obs => {
+      this.http.get(environment.LOCALE.GET+locale).subscribe((res: any[]) => {
+        obs.next(res);
+        obs.complete();
+      }, error => {
+        obs.error(error);
+        obs.complete();
+      });
+    });
+  }
   
 }

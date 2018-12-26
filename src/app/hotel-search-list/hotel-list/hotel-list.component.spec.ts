@@ -8,10 +8,13 @@ import { FormsModule } from '@angular/forms';
 import { HotelListComponent } from '../hotel-list/hotel-list.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { HttpClient } from '@angular/common/http';
 
 describe('HotelListComponent', () => {
   let component: HotelListComponent;
   let fixture: ComponentFixture<HotelListComponent>;
+  let hotelService: HotelSearchService;
+  let httpClient: HttpClient;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -35,11 +38,13 @@ describe('HotelListComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(HotelListComponent);
     component = fixture.componentInstance;
+    hotelService = new HotelSearchService(httpClient);
     fixture.detectChanges();
   });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
+  it('#getHotel should return value', () => {
+    // expect(hotelService.getHotel("JPY")).toBe('real value');
   });
 
 });
+

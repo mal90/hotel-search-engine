@@ -11,6 +11,10 @@ export const environment = {
 
   CURRENCY : {
     GET : "http://5c08f37bea3172001389ccbd.mockapi.io/hotels/tokyo/1/"
+  },
+
+  LOCALE : {
+    GET : "https://5c08f37bea3172001389ccbd.mockapi.io/hotels/"
   }
 };
 
