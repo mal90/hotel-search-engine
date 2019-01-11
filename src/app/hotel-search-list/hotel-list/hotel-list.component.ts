@@ -18,7 +18,9 @@ export class HotelListComponent implements OnInit {
   maxRate: number = 10; // max rating of the hotel is set to default value of = 10
   isRatingReadonly: boolean = true; // max rating is bydefault readonly
   currencyTypes: string[] = ["USD", "SGD", "CNY", "KRW"];//Currency type initialization
+  localeTypes: string[] = ["en", "zh" , "ja"];
   selectedCurrency: string;
+  selectedLocale: string = "en";
 
 
   constructor(private hotelSearchService: HotelSearchService,
@@ -26,6 +28,12 @@ export class HotelListComponent implements OnInit {
     private modalService: NgbModal) { }
 
   ngOnInit() {
+    //this.initializeHotels(); // No need to call this method now.
+    this.getCurrency();
+    this.changeHotelLocale(this.getLocale());
+  }
+
+  initializeHotels(){
     /**
      * savedCurrency is last selected currency
      * if savedCurrency cannot be found , use USD as default currency
@@ -48,12 +56,24 @@ export class HotelListComponent implements OnInit {
     );
   }
 
+  getCurrency(){
+    let savedCurrency = localStorage.getItem('currency');
+    this.selectedCurrency = savedCurrency ? savedCurrency : this.currencyTypes[0];
+  }
+
+  getLocale(){
+    let savedLocale = localStorage.getItem('locale');
+    this.selectedLocale = savedLocale ? savedLocale : this.localeTypes[0];
+    return this.selectedLocale;
+  }
+
   changeCurrency(newCurrency: string) {
     /**
      * When user change currency type , get the price list of the currency
      * Refresh results will be called everytime user change the currency type
      */
     this.spinner.show();
+    localStorage.setItem("currency",newCurrency)
     this.selectedCurrency = newCurrency;
     this.hotelSearchService.getPriceByCurrency(newCurrency).subscribe(priceList => {
       this.refreshResults(priceList, newCurrency);
@@ -121,6 +141,24 @@ export class HotelListComponent implements OnInit {
      */
     const modalRef = this.modalService.open(HotelDescriptionModalComponent);
     modalRef.componentInstance.decription = decription;
+  }
+
+  changeHotelLocale(newLocale){
+    /**
+     * This method will fetch the hotel information according
+     * to the language/locale selected by the user
+     */
+
+    localStorage.setItem("locale",newLocale);
+    this.selectedLocale = newLocale;
+    this.hotelSearchService.getHotelsByLocale(newLocale).subscribe(hotelList => {
+      this.hotelList = hotelList;
+      this.changeCurrency(this.selectedCurrency);
+      console.log(hotelList);
+    },
+    error => {
+        console.log("Error occurred while retrieving hotels by locale")
+    });
   }
 
 }
