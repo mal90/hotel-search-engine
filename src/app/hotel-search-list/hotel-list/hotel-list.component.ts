@@ -51,7 +51,7 @@ export class HotelListComponent implements OnInit {
       this.changeCurrency(this.selectedCurrency);
       },
       error => {
-          console.log("Error occurred while retrieving results of hotels")
+          console.log("Error occurred while retrieving results of hotels");
       }
     );
   }
@@ -126,6 +126,7 @@ export class HotelListComponent implements OnInit {
     /**
      * Round the price to nearest 10 if the currency is USD , SGD  or CNY
      * If not round it to nearest 100 dollers
+     * 
      */
     if(currency === 'USD' || currency === 'SGD' || currency === 'CNY'){
       return Math.round(price);
